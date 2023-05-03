@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: miTema(context),
       title: 'Notas App',
       debugShowCheckedModeBanner: false,
-      theme: miTema(context),
       home: MyHomePage(),
     );
   }
