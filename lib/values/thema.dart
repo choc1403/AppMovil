@@ -8,7 +8,7 @@ const Color rojo = Color(0xffEB9486);
 
 miTema(BuildContext context) {
   return ThemeData(
-    primaryColor: primary,
+    primarySwatch: Colors.blueGrey,
     colorScheme: ColorScheme.fromSwatch(
       primaryColorDark: Colors.yellow,
     ).copyWith(

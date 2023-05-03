@@ -1,3 +1,4 @@
+import 'package:apptaller/Common/MyRouters.dart';
 import 'package:apptaller/Model/nota.dart';
 import 'package:apptaller/Pages/Pages.dart';
 import 'package:apptaller/services/userservies.dart';
@@ -6,20 +7,25 @@ import 'package:flutter/material.dart';
 
 import '../values/thema.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   List<Nota> misNotas = [
     Nota(titulo: "Titulo 1", contenido: "Conendio de la nmota"),
     Nota(titulo: "Titulo 2", contenido: "Conendio de la nmota"),
     Nota(titulo: "Titulo 3", contenido: "Conendio de la nmota")
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Notas App")),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, 'nuevo');
+          Navigator.pushNamed(context, ROUTE_NOTA);
           /*showModalBottomSheet(
               context: context,
               builder: (BuildContext context) {
@@ -36,13 +42,16 @@ class MyHomePage extends StatelessWidget {
             children: [
               for (Nota nota in misNotas)
                 ListTile(
-                  title: Text(nota.titulo!),
-                  subtitle: Text(nota.contenido!),
+                  title: Text(nota.titulo),
+                  subtitle: Text(nota.contenido),
                 ),
             ],
           );
         },
       ),
+      /*ListView(
+        
+      ),*/
     );
   }
 }

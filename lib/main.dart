@@ -1,3 +1,4 @@
+import 'package:apptaller/Common/MyRouters.dart';
 import 'package:apptaller/values/thema.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,10 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: miTema(context),
+      theme: ThemeData(
+        primarySwatch: Colors.amber,
+      ),
       title: 'Notas App',
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      onGenerateRoute: MyRouters.generateRoute,
+      initialRoute: ROUTE_HOME,
     );
   }
 }
