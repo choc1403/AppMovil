@@ -5,6 +5,10 @@ import 'package:apptaller/Pages/Pages.dart';
 const String ROUTE_HOME = "/home";
 const String ROUTE_NOTA = "/nuevo";
 
+/**
+ * Configuracion de las rutas de cada pagina
+ */
+
 class MyRouters {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -12,6 +16,7 @@ class MyRouters {
         return MaterialPageRoute(builder: (_) => MyHomePage());
       case "/nuevo":
         return MaterialPageRoute(builder: (_) => ModalNota());
+
       default:
         return MaterialPageRoute(builder: (_) => MyHomePage());
     }

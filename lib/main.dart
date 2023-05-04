@@ -9,6 +9,7 @@ import 'package:apptaller/Pages/Pages.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  // Inicializamos la Firebase a la aplicacion
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());

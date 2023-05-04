@@ -6,6 +6,10 @@ const Color blanco = Color(0xffF9F8F8);
 const Color amarillo = Color(0xffF3FE8A);
 const Color rojo = Color(0xffEB9486);
 
+/**
+ * El patron de colores a utilizar en la aplicacion
+ */
+
 miTema(BuildContext context) {
   return ThemeData(
     primarySwatch: Colors.blueGrey,

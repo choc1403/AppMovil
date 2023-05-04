@@ -3,6 +3,9 @@ import 'package:apptaller/services/userservies.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * Obtener el resultado del CRUD realizado
+ */
 class AppState with ChangeNotifier {
   List<Nota> _notas = [];
 
@@ -10,7 +13,7 @@ class AppState with ChangeNotifier {
     try {
       bool respues = await UserServices().eliminarNota(key);
       if (respues) {
-        notifyListeners();
+        notifyListeners(); // Funcion que hace que se recarge automaticamente la aplicacion y muestre los resultados de la accion realizada
       }
     } catch (e) {
       print(e);
@@ -21,7 +24,7 @@ class AppState with ChangeNotifier {
     try {
       bool resp = await UserServices().saveNotas(text, text2);
       if (resp) {
-        notifyListeners();
+        notifyListeners(); // Funcion que hace que se recarge automaticamente la aplicacion y muestre los resultados de la accion realizada
       }
       return resp;
     } catch (e) {
