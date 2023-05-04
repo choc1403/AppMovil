@@ -6,8 +6,8 @@ class UserServices {
     List<Nota> misNotas = [];
     try {
       DataSnapshot snap = (await FirebaseDatabase.instance
-          .ref()
-          .child('appNotas')
+          .reference()
+          .child('notas')
           .once()) as DataSnapshot;
       if (snap.exists) {
         print(snap.value);
@@ -21,14 +21,15 @@ class UserServices {
 
   Future<bool> saveNotas(String titulo, String contenido) async {
     try {
+      print("Guardandooo");
       await FirebaseDatabase.instance
-          .ref()
-          .child('appNotas')
+          .reference()
+          .child('notas')
           .push()
           .set({'title': titulo, 'body': contenido});
       return true;
     } catch (e) {
-      print(e);
+      print("Error: $e");
       return false;
     }
   }
