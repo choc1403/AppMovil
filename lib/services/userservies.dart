@@ -1,16 +1,36 @@
+import 'dart:convert';
+
+import 'package:apptaller/DataBase/DataBase.dart';
 import 'package:apptaller/Model/nota.dart';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class UserServices {
+  Future<bool> eliminarNota(String key) async {
+    try {
+      await DataBase.database.child(key).remove();
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   Future<List<Nota>> getNotas() async {
     List<Nota> misNotas = [];
+
     try {
-      DataSnapshot snap = (await FirebaseDatabase.instance
-          .reference()
-          .child('notas')
-          .once()) as DataSnapshot;
-      if (snap.exists) {
-        print(snap.value);
+      DataSnapshot snapshot = await DataBase.database.get();
+      if (snapshot.exists) {
+        snapshot.children.forEach((dato) {
+          var body = dato.child('body').value.toString();
+          var title = dato.child('title').value.toString();
+          Map mapa = {'key': dato.key, 'title': title, 'body': body};
+          Nota nuevaNo = Nota(
+              contenido: mapa['body'], titulo: mapa['title'], key: mapa['key']);
+          misNotas.add(nuevaNo);
+        });
       }
 
       return misNotas;

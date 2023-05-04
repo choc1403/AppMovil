@@ -1,8 +1,10 @@
+import 'package:apptaller/services/appstate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:apptaller/services/userservies.dart';
 import 'package:apptaller/values/thema.dart';
+import 'package:provider/provider.dart';
 
 class ModalNota extends StatefulWidget {
   @override
@@ -18,7 +20,20 @@ class _ModalNotaState extends State<ModalNota> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(
+          "Nueva Nota",
+          style: TextStyle(fontSize: 25),
+        ),
+        centerTitle: true,
+        elevation: 10,
+        toolbarHeight: 65,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(25),
+                bottomLeft: Radius.circular(25))),
+      ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         color: blanco,
@@ -59,14 +74,22 @@ class _ModalNotaState extends State<ModalNota> {
                         print("Esta presionando");
                         if (_formularioKey.currentState!.validate()) {
                           print("Formulario correcto");
-                          bool respuesta = await UserServices().saveNotas(
+
+                          bool respuesta = await Provider.of<AppState>(context,
+                                  listen: false)
+                              .saveNotas(_tituloController.text,
+                                  _contenidoController.text);
+
+                          /*await UserServices().saveNotas(
                               _tituloController.text,
-                              _contenidoController.text);
+                              _contenidoController.text);*/
+
                           print("El resultado del await $respuesta");
 
                           if (respuesta) {
                             Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
                               content: Text('Nota Agregada Correctamente'),
                               backgroundColor: Colors.green,
                             ));

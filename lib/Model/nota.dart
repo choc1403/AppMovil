@@ -1,6 +1,6 @@
 class Nota {
-  Nota({required this.titulo, required this.contenido, this.key});
+  Nota({required this.contenido, required this.key, required this.titulo});
+  String key;
   String titulo;
   String contenido;
-  String? key;
 }
